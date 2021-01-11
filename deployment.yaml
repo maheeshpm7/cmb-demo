@@ -6,7 +6,6 @@ metadata:
   namespace: default
   labels:
     app: app-hello-world
-    version: blue
 spec:
   replicas: 1
   selector:
@@ -18,7 +17,7 @@ spec:
         app: app-hello-world
     spec:
       containers:
-      - name: app-hello-world-ctr
+      - name: app-hello-world
         image: gcr.io/quantum-talent-301321/cmb-demo:latest
         imagePullPolicy: Always
         ports:
@@ -32,11 +31,10 @@ metadata:
   labels:
     app: app-hello-world
 spec:
-  selector:
-    app: app-hello-world
-    version: blue
   type: LoadBalancer 
   ports:
-    - port: 4000
+    - port: 80
       targetPort: 3000
       protocol: TCP
+  selector:
+    app: app-hello-world
