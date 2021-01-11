@@ -38,8 +38,7 @@ pipeline {
           steps {
             sh "docker build -t tests:${env.GIT_COMMIT} -f ${paas.build.docker.dockerfile.runtime} --target builder ."
             sh "docker run --name tests-${env.GIT_COMMIT} tests:${env.GIT_COMMIT}"
-            sh "docker start tests-${env.GIT_COMMIT}"
-            sh "docker cp tests-${env.GIT_COMMIT}:/opt/build/target ."              
+            sh "docker start tests-${env.GIT_COMMIT}"          
           }
         }
         
