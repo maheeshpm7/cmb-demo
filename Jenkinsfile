@@ -32,14 +32,14 @@ pipeline {
                     }
                 }
             }
-        }                          
+        }
         
+        stage('Execute Unit Tests') {
+          steps {
 
-    stage('Test') {
-      steps {
-         sh 'npm test'
-      }
-    }
+            sh "docker start tests-${env.GIT_COMMIT}"
+          }
+        }
         
         stage('Deploy') {
             steps {
