@@ -32,17 +32,7 @@ pipeline {
                     }
                 }
             }
-        }        
-        
-        stage('Test') {
-            steps {
-              script {
-                docker.image(registry).inside {
-                  sh 'npm test'
-                }
-              }
-            }
-        }         
+        }               
         
         stage("Deploy") {
             steps {
