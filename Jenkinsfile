@@ -34,6 +34,12 @@ pipeline {
             }
         }        
         
+        stage('Test') {
+            steps {
+                sh "npm test"
+            }
+        }         
+        
         stage("Deploy") {
             steps {
                 withCredentials([[$class: 'FileBinding', credentialsId: 'gke-credential', variable: 'JSON_KEY']]) {
@@ -48,13 +54,7 @@ pipeline {
                                         
                 }
             }
-        }        
-        
-        stage('Test') {
-            steps {
-                sh "npm test"
-            }
-        }        
+        }               
         
         stage('Clean') {
             steps {
