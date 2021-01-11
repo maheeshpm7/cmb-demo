@@ -34,11 +34,17 @@ pipeline {
             }
         }                          
         
-          dockerImage.inside('-u 0') {
-            stage('Test') {
-              sh "npm test"
+
+        stage('Push') {
+            steps {
+                script {        
+                        dockerImage.inside('-u 0') {
+
+                        sh "npm test"
+                        }
+                }
             }
-          }
+        }
         
         stage('Deploy') {
             steps {
