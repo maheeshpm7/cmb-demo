@@ -3,7 +3,7 @@ pipeline {
     agent any
     
     environment {        
-        registry = "gcr.io/quantum-talent-301321/hello-world"
+        registry = "gcr.io/quantum-talent-301321/cmb-demo"
         dockerImage = ''
     }
     
@@ -11,16 +11,14 @@ pipeline {
         
         stage("Checkout") {
             steps {
-                git url:'https://github.com/claudiomartinbianco/hello-world.git'
-                // git credentialsId: 'bitbucket_server', url: 'https://bitbucket.whirlpoolcorp.com/scm/~biancc6/hello-world.git'
+                git url:'https://github.com/claudiomartinbianco/cmb-demo.git'                
             }
         }
         
         stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build( registry )
-                    // dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    dockerImage = docker.build( registry )                    
                 }
             }
         }
@@ -37,19 +35,20 @@ pipeline {
         }        
         
         stage("Deploy") {
-            steps {                                              
+            steps {
                 withCredentials([[$class: 'FileBinding', credentialsId: 'gke-credential', variable: 'JSON_KEY']]) {
     
                     sh '/root/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file $JSON_KEY'
 
                     sh '/root/google-cloud-sdk/bin/gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project quantum-talent-301321'                    
 
-                    // sh '/root/google-cloud-sdk/bin/kubectl create deployment cmb --image=gcr.io/quantum-talent-301321/hello-world:latest'
+                    sh '/root/google-cloud-sdk/bin/kubectl create -f deployment.yaml'                    
 
-                    sh '/root/google-cloud-sdk/bin/kubectl create -f deployment.yaml'
-                }                
+                    // sh '/root/google-cloud-sdk/bin/kubectl rollout restart deployment/node-app-deployment'
+                                        
+                }
             }
-        }  
+        }        
         
         stage('Clean') {
             steps {
