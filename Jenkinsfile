@@ -36,8 +36,8 @@ pipeline {
         
         stage('Execute Unit Tests') {
           steps {
-
-            sh "docker exec $dockerImage npm test"
+            echo "Building ${env.GIT_COMMIT}"
+            // sh "docker exec $dockerImage npm test"
           }
         }
         
