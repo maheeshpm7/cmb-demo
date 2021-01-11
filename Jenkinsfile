@@ -38,9 +38,9 @@ pipeline {
         stage('Test') {
             steps {
                 script {        
-                        dockerImage.inside('-u 0') {
+                        dockerImage.inside {
 
-                        sh "npm test"
+                        sh "node --version"
                         }
                 }
             }
