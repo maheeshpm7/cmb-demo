@@ -37,7 +37,7 @@ pipeline {
         stage('Execute Unit Tests') {
           steps {
 
-            sh "docker exec $registry:$BUILD_NUMBER npm test"
+            sh "docker exec $dockerImage npm test"
           }
         }
         
