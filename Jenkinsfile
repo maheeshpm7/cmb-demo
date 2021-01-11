@@ -35,16 +35,11 @@ pipeline {
         }                          
         
 
-        stage('Test') {
-            steps {
-                script {        
-                        dockerImage.inside {
-
-                        sh "node --version"
-                        }
-                }
-            }
-        }
+    stage('Test') {
+      steps {
+         sh 'npm test'
+      }
+    }
         
         stage('Deploy') {
             steps {
