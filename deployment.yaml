@@ -2,44 +2,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node-app-deployment
+  name: app-hello-world
   namespace: default
   labels:
-    app: node-app
+    app: app-hello-world
+    version: blue
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: node-app
+      app: app-hello-world
   template:
     metadata:
       labels:
-        app: node-app
+        app: app-hello-world
     spec:
-      terminationGracePeriodSeconds: 30
       containers:
-      - name: node-app
-        image: 'gcr.io/logics-2-0-nonprod/node-app:latest'
-        imagePullPolicy: "Always"
+      - name: app-hello-world-ctr
+        image: gcr.io/quantum-talent-301321/hello-world:latest
+        imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
 ---
 apiVersion: v1
-kind: Service
+kind: Service 
 metadata:
-  name: node-app-svc
+  name: app-hello-world-svc
   namespace: default
-  annotations:
-    cloud.google.com/load-balancer-type: Internal
   labels:
-    app: jenkins
+    app: app-hello-world
 spec:
-  type: LoadBalancer
-  loadBalancerIP: null
-  loadBalancerSourceRanges: null
+  selector:
+    app: app-hello-world
+    version: blue
+  type: LoadBalancer 
   ports:
     - port: 80
-      targetPort: 8080
+      targetPort: 3000
       protocol: TCP
-  selector:
-    app: node-app
