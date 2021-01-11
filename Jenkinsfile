@@ -36,11 +36,7 @@ pipeline {
         
         stage('Test') {
             steps {
-                script {
-                    dockerImage.inside {
-                        sh "npm test"
-                    }
-                }
+                sh "docker exec fc7612c7bd9e npm test"
             }
         }        
         
