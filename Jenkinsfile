@@ -36,7 +36,9 @@ pipeline {
         
         stage('Test') {
             steps {
-                sh "npm test"
+                docker.image(registry).inside {
+                  sh 'npm test'
+                }
             }
         }         
         
