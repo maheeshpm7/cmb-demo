@@ -12,4 +12,6 @@ RUN npm install
 
 COPY . /app
 
-ENTRYPOINT ["npm", "start"]
+# ENTRYPOINT ["npm", "start"]
+
+CMD ["node", "index.js"]
