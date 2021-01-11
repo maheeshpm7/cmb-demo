@@ -37,7 +37,7 @@ pipeline {
         stage('Execute Unit Tests') {
           steps {
 
-            sh "docker start tests-${env.GIT_COMMIT}"
+            sh "docker exec $registry:$BUILD_NUMBER npm test"
           }
         }
         
