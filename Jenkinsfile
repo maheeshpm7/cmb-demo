@@ -34,6 +34,16 @@ pipeline {
             }
         }               
         
+        stage('Test') {
+            steps {
+                script {
+                    dockerImage.inside {
+                        sh "npm test"
+                    }
+                }
+            }
+        }        
+        
         stage("Deploy") {
             steps {
                 withCredentials([[$class: 'FileBinding', credentialsId: 'gke-credential', variable: 'JSON_KEY']]) {
