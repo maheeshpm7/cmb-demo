@@ -9,7 +9,7 @@ pipeline {
     
     stages {
         
-        stage("Checkout") {
+        stage('Checkout') {
             steps {
                 git url:'https://github.com/claudiomartinbianco/cmb-demo.git'                
             }
@@ -34,13 +34,28 @@ pipeline {
             }
         }
         
-        stage('Execute Unit Tests') {
-          steps {
-            sh "docker build -t tests:${env.GIT_COMMIT} -f ${paas.build.docker.dockerfile.runtime} --target builder ."
-            sh "docker run --name tests-${env.GIT_COMMIT} tests:${env.GIT_COMMIT}"
-            sh "docker start tests-${env.GIT_COMMIT}"          
-          }
-        }
+        stage('Unit Tests') {
+            steps {
+                script {
+
+                        dockerImage.inside() { 
+                        // Extracting the PROJECTDIR environment variable from inside the container 
+
+                        def PROJECTDIR = sh(script: 'echo \$PROJECTDIR', returnStdout: true).trim() 
+
+                        // Copying the project into our workspace 
+
+                        sh "cp -r '$PROJECTDIR' '$WORKSPACE'" 
+
+                        // Running the tests inside the new directory 
+
+                        dir("$WORKSPACE$PROJECTDIR") { sh "npm test" } 
+                        } 
+                    
+                    }
+                }
+            }
+        }               
         
         stage('Deploy') {
             steps {
