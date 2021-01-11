@@ -32,15 +32,15 @@ pipeline {
                     }
                 }
             }
-        }               
+        }                          
         
-        stage('Test') {
-            steps {
-                sh "docker exec fc7612c7bd9e npm test"
+          dockerImage.inside('-u 0') {
+            stage('Test') {
+              sh "npm test"
             }
-        }        
+          }
         
-        stage("Deploy") {
+        stage('Deploy') {
             steps {
                 withCredentials([[$class: 'FileBinding', credentialsId: 'gke-credential', variable: 'JSON_KEY']]) {
     
