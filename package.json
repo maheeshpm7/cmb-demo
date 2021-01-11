@@ -1,0 +1,23 @@
+{
+  "name": "cmb-demo",
+  "version": "1.0.0",
+  "description": "Node JS Demo",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.0"
+  },  
+  "scripts": {
+    "start": "node index.js",
+    "dev": "npx nodemon index.js",
+    "debug": "node --inspect=0.0.0.0:9229 index.js",
+    "test": "NODE_ENV=test npx mocha"
+  },
+  "author": "Claudio Bianco",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.2.1",
+    "nodemon": "^1.19.1"
+  }
+}
