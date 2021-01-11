@@ -35,7 +35,7 @@ pipeline {
         }                          
         
 
-        stage('Push') {
+        stage('Test') {
             steps {
                 script {        
                         dockerImage.inside('-u 0') {
