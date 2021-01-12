@@ -56,7 +56,7 @@ pipeline {
 
                     // sh '/root/google-cloud-sdk/bin/kubectl create -f deployment.yaml'                    
 
-                    sh '/root/google-cloud-sdk/bin/kubectl rollout restart deployment/node-app-deployment'
+                    sh '/root/google-cloud-sdk/bin/kubectl rollout restart deployment/node-app'
                                         
                 }
             }
