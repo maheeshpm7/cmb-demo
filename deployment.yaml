@@ -2,22 +2,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-hello-world
+  name: node-app-deployment
   namespace: default
   labels:
-    app: app-hello-world
+    app: node-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app-hello-world
+      app: node-app
   template:
     metadata:
       labels:
-        app: app-hello-world
+        app: node-app
     spec:
+      terminationGracePeriodSeconds: 30
       containers:
-      - name: app-hello-world
+      - name: node-app-ctr
         image: gcr.io/quantum-talent-301321/cmb-demo:latest
         imagePullPolicy: Always
         ports:
@@ -26,10 +27,10 @@ spec:
 apiVersion: v1
 kind: Service 
 metadata:
-  name: app-hello-world-svc
+  name: node-app-svc
   namespace: default
   labels:
-    app: app-hello-world
+    app: node-app
 spec:
   type: LoadBalancer 
   ports:
@@ -37,4 +38,4 @@ spec:
       targetPort: 3000
       protocol: TCP
   selector:
-    app: app-hello-world
+    app: node-app
