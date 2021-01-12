@@ -40,20 +40,20 @@ pipeline {
 
                         dockerImage.inside() { 
                         // Extracting the PROJECTDIR environment variable from inside the container 
-
+                            
                         def PROJECTDIR = sh(script: 'echo \$PROJECTDIR', returnStdout: true).trim() 
 
                         // Copying the project into our workspace 
 
-                        sh "cp -r '$PROJECTDIR' '$WORKSPACE'" 
+                        // sh "cp -r '$PROJECTDIR' '$WORKSPACE'" 
 
                         // Running the tests inside the new directory 
 
-                        dir("$WORKSPACE$PROJECTDIR") { sh "npm test" }                         
+                        // dir("$WORKSPACE$PROJECTDIR") { sh "npm test" }                         
 
                         } 
-                    
                 }
+                                    echo $PROJECTDIR
             }
         }               
         
