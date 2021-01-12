@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node-app-deployment
+  name: node-app
   namespace: default
   labels:
     app: node-app
@@ -18,7 +18,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 30
       containers:
-      - name: node-app-ctr
+      - name: node-app
         image: gcr.io/quantum-talent-301321/cmb-demo:latest
         imagePullPolicy: Always
         ports:
