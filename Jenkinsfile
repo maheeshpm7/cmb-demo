@@ -38,9 +38,15 @@ pipeline {
             steps {
                 script {
                     dockerImage.inside() {
-                        sh "npm install express --save"
-                        sh "npm install -D mocha chai chai-http"
-                        sh "npm test"
+                        // sh "npm install express --save"
+                        // sh "npm install -D mocha chai chai-http"
+                        // sh "npm test"
+                        
+                        def PROJECTDIR = sh(script: 'echo \$PROJECTDIR', returnStdout: true).trim()
+                        sh "cp -r '$PROJECTDIR' '$WORKSPACE'"
+                        dir("$WORKSPACE$PROJECTDIR") {
+                            sh "npm test"
+                        }                        
                     } 
                 }
             }
