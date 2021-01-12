@@ -15,14 +15,14 @@ spec:
     metadata:
       labels:
         app: node-app
-    spec:
+      spec:
       terminationGracePeriodSeconds: 30
-      containers:
-      - name: node-app
-        image: gcr.io/quantum-talent-301321/cmb-demo:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 3000
+    containers:
+    - name: node-app
+      image: gcr.io/quantum-talent-301321/cmb-demo:latest
+      imagePullPolicy: Always
+      ports:
+      - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service 
