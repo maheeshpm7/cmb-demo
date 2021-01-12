@@ -51,6 +51,7 @@ pipeline {
 
                         // dir("$WORKSPACE$PROJECTDIR") { sh "npm test" }                         
 
+                            sh "npm install express --save"
                             sh "npm install -D mocha chai chai-http"
                             sh "npm test"
                         } 
