@@ -45,11 +45,11 @@ pipeline {
 
                         // Copying the project into our workspace 
 
-                        // sh "cp -r '$PROJECTDIR' '$WORKSPACE'" 
+                        sh "cp -r '$PROJECTDIR' '$WORKSPACE'" 
 
                         // Running the tests inside the new directory 
 
-                        // dir("$WORKSPACE$PROJECTDIR") { sh "npm test" }                         
+                        dir("$WORKSPACE$PROJECTDIR") { sh "npm test" }                         
 
                         } 
                 }
