@@ -37,7 +37,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 script {
-
+                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
                         dockerImage.inside() { 
                         // Extracting the PROJECTDIR environment variable from inside the container 
                             
@@ -53,7 +53,6 @@ pipeline {
 
                         } 
                 }
-                                    echo $PROJECTDIR
             }
         }               
         
