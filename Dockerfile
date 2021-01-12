@@ -12,6 +12,4 @@ RUN npm install
 
 COPY . /app
 
-# ENTRYPOINT ["npm", "start"]
-
 CMD ["npm", "start"]
