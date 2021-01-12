@@ -37,24 +37,11 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 script {
-                        // dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                        dockerImage.inside() { 
-                        // Extracting the PROJECTDIR environment variable from inside the container 
-                            
-                        //def PROJECTDIR = sh(script: 'echo \$PROJECTDIR', returnStdout: true).trim() 
-
-                        // Copying the project into our workspace 
-
-                        // sh "cp -r '$PROJECTDIR' '$WORKSPACE'" 
-
-                        // Running the tests inside the new directory 
-
-                        // dir("$WORKSPACE$PROJECTDIR") { sh "npm test" }                         
-
-                            sh "npm install express --save"
-                            sh "npm install -D mocha chai chai-http"
-                            sh "npm test"
-                        } 
+                    dockerImage.inside() {
+                        sh "npm install express --save"
+                        sh "npm install -D mocha chai chai-http"
+                        sh "npm test"
+                    } 
                 }
             }
         }               
