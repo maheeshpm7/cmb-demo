@@ -54,8 +54,6 @@ pipeline {
 
                     sh '/root/google-cloud-sdk/bin/gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project quantum-talent-301321'                    
 
-                    // sh '/root/google-cloud-sdk/bin/kubectl create -f deployment.yaml'                    
-
                     sh '/root/google-cloud-sdk/bin/kubectl rollout restart deployment/node-app'
                                         
                 }
