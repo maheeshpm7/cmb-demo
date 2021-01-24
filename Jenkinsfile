@@ -54,7 +54,7 @@ pipeline {
                     
                     sh 'whereis kubectl'
                     
-                    // sh '/var/jenkins_home/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file $JSON_KEY'
+                    sh '/usr/local/gcloud/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file $JSON_KEY'
 
                     // sh '/var/jenkins_home/google-cloud-sdk/bin/gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project quantum-talent-301321'                    
 
