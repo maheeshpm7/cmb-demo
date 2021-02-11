@@ -24,7 +24,7 @@ pipeline {
                 script {
                         sh "npm install express --save"
                         sh "npm install -D mocha chai chai-http"
-                        sh "npm test"                                               
+                                                                       
                 }
             }
         }
@@ -38,7 +38,7 @@ pipeline {
                     //sh 'npm install -g sonarqube-scanner'
                     //sh 'sonar-scanner -Dsonar.host.url='+env.SONAR_SERVER+'
                     sh 'sonar-scanner -Dsonar.host.url='+env.SONAR_SERVER+' -Dsonar.projectName=${JOB_BASE_NAME} -Dsonar.projectKey=${JOB_BASE_NAME} -Dsonar.sources=. -Dsonar.tests=. -Dsonar.inclusions=** -Dsonar.test.inclusions=src/**/*.spec.js,src/**/*.spec.jsx,src/**/*.test.js,src/**/*.test.jsx'
-                    
+                    sh "npm test"
                 }
     		}
 		}        
