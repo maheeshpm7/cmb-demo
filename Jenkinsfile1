@@ -37,7 +37,7 @@ pipeline {
                     
                     //sh 'npm install -g sonarqube-scanner'
                     //sh 'sonar-scanner -Dsonar.host.url='+env.SONAR_SERVER+'
-                    sh 'sonar-scanner -Dsonar.host.url='+env.SONAR_SERVER+' -Dsonar.projectName=${JOB_BASE_NAME} -Dsonar.projectKey=${JOB_BASE_NAME} -Dsonar.sources=src -Dsonar.tests=src -Dsonar.inclusions=** -Dsonar.test.inclusions=src/**/*.spec.js,src/**/*.spec.jsx,src/**/*.test.js,src/**/*.test.jsx'
+                    sh 'sonar-scanner -Dsonar.host.url='+env.SONAR_SERVER+' -Dsonar.projectName=${JOB_BASE_NAME} -Dsonar.projectKey=${JOB_BASE_NAME} -Dsonar.sources=. -Dsonar.tests=. -Dsonar.inclusions=** -Dsonar.test.inclusions=src/**/*.spec.js,src/**/*.spec.jsx,src/**/*.test.js,src/**/*.test.jsx'
                     
                 }
     		}
