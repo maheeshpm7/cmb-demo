@@ -32,14 +32,8 @@ pipeline {
             
         stage('Quality'){
         	steps {
-    			withSonarQubeEnv('Sonarqube Whirlpool'){
-					//sh 'mvn sonar:sonar -Dsonar.host.url='+env.SONAR_SERVER+' -Dsonar.projectName=${JOB_BASE_NAME} -Dsonar.projectKey=${JOB_BASE_NAME} '
-                    
-                    //sh 'npm install -g sonarqube-scanner'
-                    //sh 'sonar-scanner -Dsonar.host.url='+env.SONAR_SERVER+'
-                    sh 'sonar-scanner -Dsonar.host.url='+env.SONAR_SERVER+' -Dsonar.projectName=${JOB_BASE_NAME} -Dsonar.projectKey=${JOB_BASE_NAME} -Dsonar.sources=. -Dsonar.tests=. -Dsonar.inclusions=** -Dsonar.test.inclusions=src/**/*.spec.js,src/**/*.spec.jsx,src/**/*.test.js,src/**/*.test.jsx'
-                    sh "npm test"
-                }
+echo 'Quality'
+
     		}
 		}        
 
