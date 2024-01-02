@@ -5,6 +5,7 @@ pipeline {
         TAG = "${BUILD_NUMBER}"
         PROJECT_ID = 'appdeploymentgke'
         LOCATION = 'us-central1-a'
+	CLUSTER_NAME = 'gkecluster-dev'
         CREDENTIALS_ID = '52ca32b2-a487-4545-8ce4-4b4eb0762a1b'
         HELM_CHART_PATH = 'node-app/'
         HELM_RELEASE_NAME = 'node'
