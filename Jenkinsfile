@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/abdulfayis681/gke-application.git'
+                git branch: 'master', url: 'https://github.com/maheeshpm7/cmb-demo.git'
             }
         }
         stage("Docker Build"){
