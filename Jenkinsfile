@@ -29,11 +29,10 @@ pipeline {
         stage("Docker Push"){
             steps{
                 script{
-                    withDockerRegistry(credentialsId: 'dbd9d3c5-0210-4392-b650-aa94ed2c571a', toolName: 'docker'){   
+                    withDockerRegistry(credentialsId: 'dbd9d3c5-0210-4392-b650-aa94ed2c571a', toolName: 'docker'){
+			sh "sudo docker login -u maheesh7 -p 'Maheeshpm@007' "  
                         sh "sudo docker tag ${IMAGE} maheesh7/${IMAGE}:${TAG} "
                         sh "sudo docker push maheesh7/${IMAGE}:${TAG} "
-                        sh "sudo docker tag ${IMAGE} maheesh7/${IMAGE}:latest "
-                        sh "sudo docker push maheesh7/${IMAGE}:latest "
                     }
                 }
             }
