@@ -21,3 +21,5 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: 3000
+        imagePullSecrets:
+      - name: registrypullsecret
