@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script {
                     sh 'kubectl create ns ${HELM_NAMESPACE} || echo "namespace already created" '
-                    sh "helm upgrade --install ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} --set image.tag=${TAG} --namespace=${HELM_NAMESPACE} --wait --timeout 600s"
+                    sh "helm upgrade --install ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} --set image.tag=${TAG} --namespace=${HELM_NAMESPACE} --wait --timeout 1h"
                 }
             }
         }
