@@ -8,7 +8,7 @@ pipeline {
 	CLUSTER_NAME = 'gkecluster-dev'
         HELM_CHART_PATH = 'node-app/'
         HELM_RELEASE_NAME = 'node'
-        HELM_NAMESPACE = 'node-app'
+        HELM_NAMESPACE = 'node'
     }
     stages {
         stage('Checkout from Git'){
