@@ -4,16 +4,16 @@ pipeline {
         IMAGE = 'gke_nodeapplication'
         TAG = "${BUILD_NUMBER}"
         PROJECT_ID = 'appdeploymentgke'
-        LOCATION = 'us-central1-a'
-	CLUSTER_NAME = 'gkecluster-dev'
+        LOCATION = 'us-central1-b'
+	CLUSTER_NAME = 'gkecluster-prod'
         HELM_CHART_PATH = 'node-app/'
         HELM_RELEASE_NAME = 'node'
-        HELM_NAMESPACE = 'node-app'
+        HELM_NAMESPACE = 'node'
     }
     stages {
         stage('Checkout from Git'){
             steps{
-                git branch: 'master', url: 'https://github.com/maheeshpm7/cmb-demo.git'
+                git branch: 'prod', url: 'https://github.com/maheeshpm7/cmb-demo.git'
             }
         }
         stage("Docker Build"){
