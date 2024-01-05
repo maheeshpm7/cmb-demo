@@ -4,7 +4,7 @@ pipeline {
         IMAGE = 'gke_nodeapplication'
         TAG = "${BUILD_NUMBER}"
         PROJECT_ID = 'appdeploymentgke'
-        LOCATION = 'us-central1-b'
+        LOCATION = 'us-central1-a'
 	CLUSTER_NAME = 'gkecluster-prod'
         HELM_CHART_PATH = 'node-app/'
         HELM_RELEASE_NAME = 'node'
