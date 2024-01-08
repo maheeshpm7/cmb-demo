@@ -25,7 +25,29 @@ pipeline {
                 }
             }
 	}
+	stage(' Trivy Scan') {
+            steps {
+                //  trivy output template 
+                sh 'sudo curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl > html.tpl'
 
+                // Scan all vuln levels
+                sh 'sudo mkdir -p reports'
+                sh 'sudo trivy image --format template --template @./html.tpl -o reports/trivy-report.html ${IMAGE}:latest'
+                publishHTML target : [
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'reports',
+                    reportFiles: 'trivy-report.html',
+                    reportName: 'Trivy Scan',
+                    reportTitles: 'Trivy Scan'
+                ]
+
+                // Scan again and fail on CRITICAL vulns
+                // sh 'trivy image --ignore-unfixed --vuln-type os,library --exit-code 1 --severity CRITICAL ${IMAGE}:latest '
+
+            }
+        }
         stage("Docker Push"){
             steps{
                 script{
