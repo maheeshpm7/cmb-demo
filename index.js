@@ -3,7 +3,7 @@ var app = express()
 var port = process.env.PORT || 3000
 
 app.get('/', function (req, res) {
-  res.send('Hello World! booo v beta')
+  res.send('Hello World! HElLO v beta')
 })
 
 if (process.env.NODE_ENV === 'test') {
