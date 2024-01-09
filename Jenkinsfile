@@ -1,11 +1,11 @@
 pipeline {
     agent any
     environment {
-        IMAGE = 'gke_nodeapplication'
+        IMAGE = 'gkeapplication'
         TAG = "${BUILD_NUMBER}"
         PROJECT_ID = 'appdeploymentgke'
+        CLUSTER_NAME = 'gkecluster-prod'
         LOCATION = 'us-central1-a'
-	CLUSTER_NAME = 'gkecluster-prod'
         HELM_CHART_PATH = 'node-app/'
         HELM_RELEASE_NAME = 'node'
         HELM_NAMESPACE = 'node-app'
@@ -19,13 +19,14 @@ pipeline {
         stage("Docker Build"){
             steps{
                 script{
-		    withDockerRegistry(credentialsId: 'dbd9d3c5-0210-4392-b650-aa94ed2c571a', toolName: 'docker'){
+                    withDockerRegistry(credentialsId: 'dbd9d3c5-0210-4392-b650-aa94ed2c571a', toolName: 'docker'){   
                         sh "sudo docker build -t ${IMAGE} ."
                     }
                 }
-	    }
-	}
-	stage(' Trivy Scan') {
+            }
+        }
+
+        stage(' Trivy Scan') {
             steps {
                 //  trivy output template 
                 sh 'sudo curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl > html.tpl'
@@ -51,10 +52,10 @@ pipeline {
         stage("Docker Push"){
             steps{
                 script{
-                    withDockerRegistry(credentialsId: 'dbd9d3c5-0210-4392-b650-aa94ed2c571a', toolName: 'docker'){
-			sh "sudo docker login -u maheesh7 -p 'Maheeshpm@007' "  
-                        sh "sudo docker tag ${IMAGE} maheesh7/${IMAGE}:${TAG} "
-                        sh "sudo docker push maheesh7/${IMAGE}:${TAG} "
+                    withDockerRegistry(credentialsId: 'dbd9d3c5-0210-4392-b650-aa94ed2c571a', toolName: 'docker'){   
+                        sh "sudo docker login -u maheesh7 -p 'Maheeshpm@007' "
+                        sh "sudo docker tag ${IMAGE} maheesh7/${IMAGE}:latest "
+                        sh "sudo docker push maheesh7/${IMAGE}:latest "
                     }
                 }
             }
@@ -86,5 +87,6 @@ pipeline {
                 }
             }
         }
-     }
-}        
+        
+    }
+}
