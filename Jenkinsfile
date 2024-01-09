@@ -23,6 +23,7 @@ pipeline {
                         sh "sudo docker build -t ${IMAGE} ."
                     }
                 }
+	    }
 	}
 	stage(' Trivy Scan') {
             steps {
@@ -85,4 +86,5 @@ pipeline {
                 }
             }
         }
-        
+     }
+}        
