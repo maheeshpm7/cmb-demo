@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout from Git'){
             steps{
-                git branch: 'master', url: 'https://github.com/maheeshpm7/cmb-demo.git'
+                git branch: 'dev', url: 'https://github.com/maheeshpm7/cmb-demo.git'
             }
         }
         stage("Docker Build"){
