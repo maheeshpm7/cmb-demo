@@ -19,7 +19,7 @@ pipeline {
         stage("Docker Build"){
             steps{
                 script{
-		    withDockerRegistry(credentialsId: '119ebb2a23180206afab279fc3db6e11ce', toolName: 'docker'){
+		    withDockerRegistry(credentialsId: '6ffb58bd-e8b4-4550-a11e-af219100592c', toolName: 'docker'){
                         sh "sudo docker build -t ${IMAGE} ."
                     }
                 }
@@ -52,7 +52,7 @@ pipeline {
         stage("Docker Push"){
             steps{
                 script{
-                    withDockerRegistry(credentialsId: 'dbd9d3c5-0210-4392-b650-aa94ed2c571a', toolName: 'docker'){
+                    withDockerRegistry(credentialsId: '6ffb58bd-e8b4-4550-a11e-af219100592c', toolName: 'docker'){
 			sh "sudo docker login -u maheesh7 -p 'Maheeshpm@007' "  
                         sh "sudo docker tag ${IMAGE} maheesh7/${IMAGE}:${TAG} "
                         sh "sudo docker push maheesh7/${IMAGE}:${TAG} "
